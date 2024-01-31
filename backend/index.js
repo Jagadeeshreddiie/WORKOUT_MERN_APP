@@ -1,15 +1,19 @@
-const express=require('express');
-const mongoose=require("mongoose");
-require('dotenv').config();
-const app=express();
+const express = require("express");
+var mongoose = require("mongoose");
+require("dotenv").config();
+const app = express();
 app.use(express.json());
 
-app.get('/',(req,res)=>{
-    console.log("hiii");
-    return res.send({'message':"hi"});
-    
-})
+app.get("/", (req, res) => {
+  console.log("hiii");
+  return res.send({ message: "hi" });
+});
 
-app.listen(process.env.PORT,()=>{
-    console.log("server stated at port 3002");
-})
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(
+    app.listen(process.env.PORT, () => {
+      console.log(" Mongoose connected & server stated at port 3002");
+    })
+  )
+  .catch((error)=>console.log(error));
