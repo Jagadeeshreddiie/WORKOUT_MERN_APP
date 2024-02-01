@@ -1,13 +1,13 @@
 const express = require("express");
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 require("dotenv").config();
+const route =require('./controller/workoutController');
+
+
 const app = express();
 app.use(express.json());
+app.use('/api/workout',route);
 
-app.get("/", (req, res) => {
-  console.log("hiii");
-  return res.send({ message: "hi" });
-});
 
 mongoose
   .connect(process.env.MONGO_URL)
