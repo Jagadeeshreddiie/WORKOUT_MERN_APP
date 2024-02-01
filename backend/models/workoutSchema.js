@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 const Schema=mongoose.Schema;
-const work=new Schema({
+
+const Work=new Schema({
     name:{
         type:String,
         required:true
     },
-    load:{
+    cols:{
         type:Number,
         required:true
     },
@@ -13,6 +14,8 @@ const work=new Schema({
         type:Number,
         required:true
     }
+},{
+    timestamps:true
 })
-const workoutSchema=mongoose.model('workout',work);
-module.exports=workoutSchema;
+
+module.exports=mongoose.model('Work',Work);
