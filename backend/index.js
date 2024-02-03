@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors=require("cors");
 require("dotenv").config();
 const route = require("./controller/workoutController");
 
@@ -7,7 +8,7 @@ const app = express();
 
 // to recieve the json format from document
 app.use(express.json());
-
+app.use(cors());
 app.use((req, res, next) => {
   console.log(req.method, req.path);
   next();
