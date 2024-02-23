@@ -6,26 +6,28 @@ const PostWorkout = () => {
   const [reps, setReps] = useState(null);
   const [workout, setWorkout] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
     setWorkout({ name, reps, cols });
     console.log(workout);
-    fetch("http://localhost:3002/api/workout/", {
+    // eslint-disable-next-line
+    const response=await fetch("http://localhost:3002/api/workout/", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify(workout),
     })
-      .then((result) => console.log(result))
-    .catch((error) =>console.log(error));
+    // const json=response.json();
+
   };
   return (
     <div className="sub-container input">
       <h1 style={{ color: "lightgreen" }}>New Workout</h1>
       <form>
         <div>
-          <p>Workout Name : </p>
+          <p>Person Name : </p>
           <input  type="text" onChange={(e) => setName(e.target.value)} />
         </div>
         <div>
